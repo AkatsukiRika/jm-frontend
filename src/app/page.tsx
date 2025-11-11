@@ -1,11 +1,20 @@
+import fs from 'fs';
+import path from 'path';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import styles from "./page.module.css";
 
 export default function Home() {
+  const markdownPath = path.join(process.cwd(), 'public/assets/markdown/home_page.md');
+  const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+
   return (
     <div className={styles.container}>
-      <h1>Home Page</h1>
-      <p>Welcome to JuanMing Web!</p>
-      <p>This is a placeholder for the Home page.</p>
+      <article className={styles.markdown}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {markdownContent}
+        </ReactMarkdown>
+      </article>
     </div>
   );
 }
