@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <article className={styles.markdown}>
+      <article className="markdown">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {markdownContent}
         </ReactMarkdown>
