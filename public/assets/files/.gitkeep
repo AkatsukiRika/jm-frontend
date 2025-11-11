@@ -1,9 +1,1 @@
 # 静态文件目录
-
-请将您的简历 PDF 文件放置在此目录下：
-- resume_v2.pdf
-- resume.pdf
-
-这些文件可以通过浏览器直接访问：
-- http://localhost:3000/assets/files/resume_v2.pdf
-- http://localhost:3000/assets/files/resume.pdf
