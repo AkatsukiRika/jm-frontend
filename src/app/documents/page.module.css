@@ -4,17 +4,128 @@
   padding: 2rem 1rem;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+/* 加载和空状态 */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+}
+
+.emptyState p {
+  font-size: 1.125rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* 标签筛选器区域 */
+.filterSection {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filterTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.clearButton {
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.clearButton:hover:not(:disabled) {
+  background-color: #e5e7eb;
   color: #1f2937;
 }
 
-.subtitle {
-  font-size: 1.125rem;
+.clearButton:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* 标签横向滚动容器 */
+.tagFilter {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+.tagFilter::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tagFilter::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.tagFilter::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+.tagFilter::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* 筛选标签按钮 */
+.filterTag {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
   color: #6b7280;
-  margin-bottom: 2rem;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filterTag:hover {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.filterTagActive {
+  background-color: #eff6ff;
+  color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.filterTagActive:hover {
+  background-color: #dbeafe;
 }
 
 /* 文档列表 */
@@ -98,13 +209,27 @@
     padding: 1rem;
   }
 
-  .title {
-    font-size: 2rem;
+  .filterSection {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  .subtitle {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+  .filterHeader {
+    margin-bottom: 0.75rem;
+  }
+
+  .filterTitle {
+    font-size: 1.125rem;
+  }
+
+  .clearButton {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .filterTag {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.875rem;
   }
 
   .documentCard {
