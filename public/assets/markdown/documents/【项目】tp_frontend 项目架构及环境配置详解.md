@@ -4,7 +4,7 @@
 # 项目架构
 该项目的架构如下图所示：
 
-![image](assets/images/documents/img_tpfe_1.png)
+![image](/assets/images/documents/img_tpfe_1.png)
 
 前端 UI 部分由 Flutter Web 实现，渲染在其 Canvas Kit 模式下。由于 Flutter 在 Web 平台不支持多线程，计算量较大的功能代码使用 NodeJS 开发，从 Dart 层调用编译后的 JavaScript 代码。
 

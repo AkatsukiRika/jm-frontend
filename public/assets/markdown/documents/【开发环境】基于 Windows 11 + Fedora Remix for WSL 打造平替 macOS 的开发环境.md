@@ -27,7 +27,7 @@
 
 由于 WSL2 实际上是轻量级的 Hyper-V 虚拟机，在安装基于 WSL2 的发行版之前，需要进入「启用或关闭 Windows 功能」页面：
 
-![image](assets/images/documents/img_wsl_1.png)
+![image](/assets/images/documents/img_wsl_1.png)
 
 在此页面中，开启「Windows 虚拟机监控程序平台」、「适用于 Linux 的 Windows 子系统」以及「虚拟机平台」三个开关后重启电脑。
 
@@ -35,17 +35,17 @@ WSL2 中支持安装多种 Linux 发行版，常见的 Debian、Ubuntu 等都支
 
 该版本由 Whitewater Foundry 开发，可以直接在 Microsoft Store 购买并下载。进入 Microsoft Store 后搜索 Fedora Remix 即可找到。
 
-![image](assets/images/documents/img_wsl_2.png)
+![image](/assets/images/documents/img_wsl_2.png)
 
 安装完成后，进入 WSL2 终端环境，输入 `install-desktop.sh`，即可进入安装桌面环境的向导程序，需要按照画面上的提示使用方向键操作。
 
-![image](assets/images/documents/img_wsl_3.png)
+![image](/assets/images/documents/img_wsl_3.png)
 
 前面的 RDP 端口设置保持默认的 3396 即可。到了这一步，会要求选择需要安装的桌面环境，这里推荐使用 GNOME。它是 Fedora Workstation 官方版本的默认桌面环境，带有对高分屏的良好支持。
 
 安装完毕后，打开 Microsoft 远程桌面工具 mstsc，输入 `localhost:3396` 进行连接，就能访问到完整的 GNOME 环境了。
 
-![image](assets/images/documents/img_wsl_4.png)
+![image](/assets/images/documents/img_wsl_4.png)
 
 ## * 使用 WSL2 2.0 更新的功能
 
@@ -82,7 +82,7 @@ WSLg 是微软官方支持的功能，在 Windows 11 + WSL2 的环境下无需�
 
 在上一步安装 GNOME 时已经安装了很多图形化的组件，可以在终端中直接启动。尝试输入 `nautilus`，就能在 Windows 桌面上启动 GNOME 自带的文件管理器。
 
-![image](assets/images/documents/img_wsl_5.png)
+![image](/assets/images/documents/img_wsl_5.png)
 
 ## 高分屏适配
 
@@ -90,7 +90,7 @@ WSLg 目前对高分屏的适配还存在缺陷。它基于 Wayland，对于原�
 
 1. 将 Windows 的缩放比例调整为与当前比例接近的非整数倍。我的两台显示器都是 200% 的缩放比例，此处调整为自定义的 199% 并重启电脑。
 
-![image](assets/images/documents/img_wsl_6.png)
+![image](/assets/images/documents/img_wsl_6.png)
 
 2. 进入 Linux 终端，输入以下命令，通过 gsettings 调整缩放比例（能使 GNOME 自带程序缩放正常）：
 
@@ -178,7 +178,7 @@ sudo dnf install fcitx5 fcitx5-chinese-addons fcitx5-gtk fcitx5-qt fcitx5-config
 
 安装完毕后可以登录 mstsc，在程序列表中找到「Fcitx 配置」，将中文输入法添加至「当前输入法」分组：
 
-![image](assets/images/documents/img_wsl_7.png)
+![image](/assets/images/documents/img_wsl_7.png)
 
 由于后续主要会使用 WSLg 而非 mstsc 中的 GNOME 环境开发，这里将以下这行命令添加到 `~/.zshrc` 中，实现 fcitx5 的自启动：
 

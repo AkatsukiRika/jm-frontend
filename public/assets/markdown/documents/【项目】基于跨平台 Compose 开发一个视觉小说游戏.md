@@ -30,11 +30,11 @@
 
 本项目的基础框架使用如下模版创建：
 
-![image](assets/images/documents/img_compose_1.png)
+![image](/assets/images/documents/img_compose_1.png)
 
 项目代码架构图如下所示。图中无边框的黄色节点代表项目中较为重要的类，绿色节点代表 Java Package，紫色节点代表资源文件，有边框节点则代表上层文件夹：
 
-![image](assets/images/documents/img_compose_2.png)
+![image](/assets/images/documents/img_compose_2.png)
 
 主要的 UI、逻辑代码及项目用到的音视频、XML 等文件均放置在 commonMain 包中，它包含一个 Platform.kt 文件，定义一些跨平台能力的接口，例如以下两个方法分别用于获取和解析存放剧本的 XML 文件：
 
@@ -366,7 +366,7 @@ mediaPlayer?.play()
 
 要编译本项目，需要使用 JDK17，开发工具推荐使用 Android Studio 最新版本。要注意的是，Android Studio 默认自带的 JDK 会由于 `jlink` 和 `jpackage` 命令缺失而导致无法编译 Desktop 包，这时候需要去设置内换用其他 JDK17 发行版：
 
-![image](assets/images/documents/img_compose_3.png)
+![image](/assets/images/documents/img_compose_3.png)
 
 编译运行 Android 的方式很简单，使用 Android Studio 图形化界面操作或使用 Gradle 命令均可（要注意 Gradle 命令需加上 `composeApp` 前缀）：
 

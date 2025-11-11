@@ -8,17 +8,17 @@
 
 本次的开发任务是一个类似美图秀秀的简易修图 APP，需要支持美白、磨皮等基本的美颜功能，上层交互比较简单，整个项目就只有三个页面：
 
-![image](assets/images/documents/img_pe_1.png)
+![image](/assets/images/documents/img_pe_1.png)
 
 左侧页面是主页，只有一个添加图片的按钮，点击后打开系统相册（无权限时先请求相册权限）。相册选图结束后，打开图片编辑页，页面由全屏图片画布、返回按钮、导出按钮、底部功能区、效果强度滑杆和对比原图按钮组成。点击导出按钮后，打开导出页面，编辑后的图片会被导出至系统相册。
 
 使用 Android Studio 创建项目时，选择 Native C++ 模版：
 
-![image](assets/images/documents/img_pe_2.png)
+![image](/assets/images/documents/img_pe_2.png)
 
 并将 C++ 标准设置为 C++ 17，以启用一些新特性：
 
-![image](assets/images/documents/img_pe_3.png)
+![image](/assets/images/documents/img_pe_3.png)
 
 # 读取图片
 
@@ -178,7 +178,7 @@ Java_com_mygo_miniphotoeditor_NativeLib_releaseBitmap(JNIEnv *env, jobject thiz)
 
 进入 GitHub Releases 页面下载好 [opencv-mobile-4.10.0-android.zip](https://github.com/nihui/opencv-mobile/releases/download/v28/opencv-mobile-4.10.0-android.zip) 并解压，将结果放到 app/src/main/cpp/lib 目录，结构如下：
 
-![image](assets/images/documents/img_pe_4.png)
+![image](/assets/images/documents/img_pe_4.png)
 
 可以看到 OpenCV 库本身带有一些 cmake 后缀名的文件，这意味着我们只需要指定引入 OpenCV 的根目录，无需编写很多复杂的 CMake 逻辑，就可以开始使用它了：
 
@@ -266,7 +266,7 @@ int CvLoader::storeBitmap(JNIEnv *env, jobject bitmap) {
 
 我们使用 NDK 进行推理，查阅官网文档 https://ai.google.dev/edge/lite/android/development?hl=zh-cn 的 TFLite C API 一节，按步骤下载 AAR 包，解压后同样放到项目的 cpp/lib 目录下，形成以下结构：
 
-![image](assets/images/documents/img_pe_5.png)
+![image](/assets/images/documents/img_pe_5.png)
 
 这个库没有自带 CMake 配置文件，就需要我们自己设置它的编译和链接过程：
 

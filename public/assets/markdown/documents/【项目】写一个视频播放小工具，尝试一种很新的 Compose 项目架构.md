@@ -14,7 +14,7 @@
 
 这个小工具的需求主要分为四类，对应 4 个 Tab，对应的 UI 示意图如下：
 
-![image](assets/images/documents/img_new_1.png)
+![image](/assets/images/documents/img_new_1.png)
 
 # 实现
 

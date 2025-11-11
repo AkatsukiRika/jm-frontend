@@ -321,7 +321,7 @@ class AudioDriver @Inject constructor() {
 }
 ```
 这就表示 AudioDriver 在全局范围内都会共享同一个实例，且全局都可以对 AudioDriver 类进行依赖注入。
-![image](assets/images/documents/img_hilt_1.png)
+![image](/assets/images/documents/img_hilt_1.png)
 
 如上图所示，对某个类声明了某种作用域注解后，该注解的箭头所能指到的地方，都可以对该类进行依赖注入，同时在该范围内共享同一个实例。
 

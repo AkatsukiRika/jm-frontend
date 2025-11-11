@@ -96,7 +96,7 @@ export default function Download() {
       <main className={`${styles.content} ${!showList ? styles.showContent : ''}`}>
         {/* 移动端返回按钮 */}
         <button className={styles.backButton} onClick={handleBack}>
-          ← 返回
+          ← Back
         </button>
 
         <div className={styles.markdownWrapper}>

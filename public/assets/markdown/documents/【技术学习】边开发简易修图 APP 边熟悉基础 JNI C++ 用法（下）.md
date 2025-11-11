@@ -12,11 +12,11 @@
 
 官方 Demo 是基于摄像头输入的实时处理，而我们正在开发的是图片编辑项目，需要引入 gpupixel 的图片渲染模块并加以定制和修改。Demo 本身就将渲染模块独立了出来，位于 `src/android/java/gpupixel`，先直接将其引入当前 Android 项目：
 
-![image](assets/images/documents/img_pe_6.png)
+![image](/assets/images/documents/img_pe_6.png)
 
 尝试编译，会发现 C++ 部分编译不过，这是因为 Demo 里的 gpupixel 子项目只包含 Java 代码，C++ 代码在上两层的 `src` 目录下。为了后续在 Android Studio 中开发 C++ 更简便，将其下所有代码文件均拷贝至当前 gpupixel 模块下的 `src/main/cpp` 目录：
 
-![image](assets/images/documents/img_pe_7.png)
+![image](/assets/images/documents/img_pe_7.png)
 
 其中，`android` 子目录下只需要拷贝 `jni` 这个文件夹。然后重新设置 build.gradle 中的 CMake 项目根目录，重新编译就能编过了：
 
@@ -37,7 +37,7 @@ android {
 
 整个渲染引擎基本上是流水线 / 管线（Pipeline）的模式，以摄像头或图片输入为 Source，经过一系列的滤镜处理后输出至 Target，其中滤镜部分可以自由叠加多个。官方的示意图如下：
 
-![image](assets/images/documents/img_pe_8.png)
+![image](/assets/images/documents/img_pe_8.png)
 
 Source 部分，官方 Android Demo 只示范了摄像头输入的用法，但已经帮我们封装好了三种输入的 Java 类，类名分别是 GPUPixelSourceCamera（摄像头输入）、GPUPixelSourceImage（图片输入）和 GPUPixelSourceRawInput（像素输入）。
 

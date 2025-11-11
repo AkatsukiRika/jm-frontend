@@ -16,7 +16,7 @@
 
 # 架构示意
 
-![image](assets/images/documents/img_linux_1.png)
+![image](/assets/images/documents/img_linux_1.png)
 
 # 架构简析
 

@@ -40,13 +40,13 @@ https://github.com/AkatsukiRika/ZhouTools
 
 架构方面，通过纯 Dart 代码简单实现了一套 MVC 架构，没有用到第三方的服务端框架（Dart 生态中此类框架也较少），整体实现可参考下图：
 
-![image](assets/images/documents/img_cmp_1.png)
+![image](/assets/images/documents/img_cmp_1.png)
 
 # 代码架构
 
 客户端整体的代码架构图如下：
 
-![image](assets/images/documents/img_cmp_2.png)
+![image](/assets/images/documents/img_cmp_2.png)
 
 本项目共分两个模块，一个是承载所有 UI 页面和上层逻辑的 `composeApp` 模块，另一个是实现 DataStore 跨平台持久化存储的 `kotStore` 模块。
 
@@ -124,7 +124,7 @@ fun Long.dayStartTime(): Long {
 
 在很多 Android 项目中都能同时看到 `util` 和 `helper` 包，很容易混淆这两者的职责。在这个项目中，`helper` 目录下包含这些文件：
 
-![image](assets/images/documents/img_cmp_3.png)
+![image](/assets/images/documents/img_cmp_3.png)
 
 其中 `effect` 子目录下的文件用于全局事件传递，其余的 Helper 单例类都是针对项目里的某个业务场景将一些方法封装起来。例如 `NetworkHelper` 中包含的一部分函数定义如下：
 

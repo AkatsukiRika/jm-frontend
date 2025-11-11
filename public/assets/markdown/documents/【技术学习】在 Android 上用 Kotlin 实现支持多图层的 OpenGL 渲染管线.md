@@ -313,7 +313,7 @@ renderer?.addLayer(imageLayer)
 
 连接手机运行程序，能看到 Bitmap 图片以铺满全屏的方式展示在屏幕上了。
 
-![](assets/images/documents/img_opengl_1.png)
+![](/assets/images/documents/img_opengl_1.png)
 
 # 实现贴纸图层
 
@@ -445,7 +445,7 @@ renderer?.addLayer(stickerLayer)
 
 运行程序，能看到贴纸图层在屏幕中间显示，且缩放和旋转符合预期。
 
-![](assets/images/documents/img_opengl_2.png)
+![](/assets/images/documents/img_opengl_2.png)
 
 # 实现滤镜图层
 
@@ -544,7 +544,7 @@ private fun createSharedFBO(width: Int, height: Int) {
 
 接下来是最重要的绘制过程，比较复杂，可以参考以下的流程图：
 
-![](assets/images/documents/img_opengl_3.png)
+![](/assets/images/documents/img_opengl_3.png)
 
 将以上流程整理成代码如下：
 
@@ -658,11 +658,11 @@ private fun renderLayersWithFBO(sortedLayers: List<ILayer>) {
 
 回到 Activity，在之前代码的基础上加上一个滤镜图层，设置滤镜图层的 `zOrder` 为 2，运行程序，能看到原图和贴纸一起被应用了滤镜效果：
 
-![](assets/images/documents/img_opengl_4.png)
+![](/assets/images/documents/img_opengl_4.png)
 
 更改代码，将贴纸图层的 `zOrder` 设置为 2，滤镜图层的 `zOrder` 设置为 1，运行程序，能看到仅背景图被应用了滤镜效果，贴纸不受影响：
 
-![](assets/images/documents/img_opengl_5.png)
+![](/assets/images/documents/img_opengl_5.png)
 
 # 结语
 
