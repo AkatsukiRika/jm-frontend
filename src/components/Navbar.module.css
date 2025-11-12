@@ -1,7 +1,7 @@
 .navbar {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 1px 3px 0 var(--card-shadow);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -35,7 +35,7 @@
 .hamburger {
   width: 2rem;
   height: 0.25rem;
-  background: #1f2937;
+  background: var(--text-primary);
   border-radius: 10px;
   transition: all 0.3s;
 }
@@ -43,13 +43,13 @@
 .logo a {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--text-primary);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .logo a:hover {
-  color: #3b82f6;
+  color: var(--primary);
 }
 
 /* PC端导航菜单 */
@@ -62,7 +62,7 @@
 }
 
 .navList li a {
-  color: #6b7280;
+  color: var(--secondary);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -73,13 +73,13 @@
 }
 
 .navList li a:hover {
-  color: #1f2937;
-  background-color: #f3f4f6;
+  color: var(--text-primary);
+  background-color: var(--card-border);
 }
 
 .navList li a.active {
-  color: #3b82f6;
-  background-color: #eff6ff;
+  color: var(--primary);
+  background-color: rgba(59, 130, 246, 0.1);
 }
 
 /* 遮罩层 */
@@ -110,8 +110,8 @@
   left: -280px;
   width: 280px;
   height: 100vh;
-  background-color: #ffffff;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  box-shadow: 2px 0 8px var(--card-shadow);
   z-index: 1001;
   transition: left 0.3s ease-in-out;
   overflow-y: auto;
@@ -126,13 +126,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .drawerHeader h2 {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -140,7 +140,7 @@
   background: transparent;
   border: none;
   font-size: 2rem;
-  color: #6b7280;
+  color: var(--secondary);
   cursor: pointer;
   padding: 0;
   width: 2rem;
@@ -152,7 +152,7 @@
 }
 
 .closeButton:hover {
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .drawerList {
@@ -168,7 +168,7 @@
 .drawerList li a {
   display: block;
   padding: 1rem 1.5rem;
-  color: #6b7280;
+  color: var(--secondary);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -176,14 +176,14 @@
 }
 
 .drawerList li a:hover {
-  color: #1f2937;
-  background-color: #f3f4f6;
+  color: var(--text-primary);
+  background-color: var(--card-border);
 }
 
 .drawerList li a.active {
-  color: #3b82f6;
-  background-color: #eff6ff;
-  border-left: 4px solid #3b82f6;
+  color: var(--primary);
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left: 4px solid var(--primary);
 }
 
 /* 移动端样式 */

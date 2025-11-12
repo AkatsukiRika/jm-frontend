@@ -10,23 +10,33 @@ import {
   isLoggedIn,
   clearAuthInfo,
 } from '@/lib/auth';
+import { getTheme, setTheme, type Theme } from '@/lib/theme';
 
 export default function Settings() {
   const [language, setLanguage] = useState('English');
-  const [theme, setTheme] = useState('Light');
+  const [currentTheme, setCurrentTheme] = useState<Theme>('light');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUsername, setCurrentUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // 检查登录状态
+  // 检查登录状态和主题
   useEffect(() => {
     if (isLoggedIn()) {
       setLoggedIn(true);
       setCurrentUsername(getUsername() || '');
     }
+
+    // 初始化主题状态
+    setCurrentTheme(getTheme());
   }, []);
+
+  // 处理主题切换
+  const handleThemeChange = (newTheme: Theme) => {
+    setCurrentTheme(newTheme);
+    setTheme(newTheme);
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,12 +110,12 @@ export default function Settings() {
           </label>
           <select
             id="theme"
-            value={theme}
-            onChange={(e) => setTheme(e.target.value)}
+            value={currentTheme}
+            onChange={(e) => handleThemeChange(e.target.value as Theme)}
             className={styles.select}
           >
-            <option value="Light">Light</option>
-            <option value="Dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
           </select>
         </div>
       </div>

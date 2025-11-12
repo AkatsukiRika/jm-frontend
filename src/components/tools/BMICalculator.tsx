@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useThemeColors } from '@/lib/hooks/useThemeColors';
 
 interface BMICategory {
   name: string;
@@ -10,6 +11,7 @@ interface BMICategory {
 }
 
 export default function BMICalculator() {
+  const colors = useThemeColors();
   const [height, setHeight] = useState(170); // cm
   const [weight, setWeight] = useState(65.0); // kg
   const [isDraggingHeight, setIsDraggingHeight] = useState(false);
@@ -188,7 +190,7 @@ export default function BMICalculator() {
     title: {
       fontSize: '1.75rem',
       fontWeight: 'bold' as const,
-      color: '#1f2937',
+      color: colors.textPrimary,
       marginBottom: '2rem',
       textAlign: 'center' as const,
     },
@@ -220,12 +222,12 @@ export default function BMICalculator() {
       opacity: 0.8,
     },
     sliderSection: {
-      backgroundColor: '#ffffff',
-      border: '1px solid #e5e7eb',
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.cardBorder}`,
       borderRadius: '0.75rem',
       padding: '1.75rem',
       marginBottom: '1.5rem',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+      boxShadow: `0 1px 3px ${colors.cardShadow}`,
     },
     sliderHeader: {
       display: 'flex',
@@ -236,17 +238,17 @@ export default function BMICalculator() {
     sliderLabel: {
       fontSize: '1.125rem',
       fontWeight: '600' as const,
-      color: '#1f2937',
+      color: colors.textPrimary,
     },
     sliderValue: {
       fontSize: '1.5rem',
       fontWeight: 'bold' as const,
-      color: '#3b82f6',
+      color: colors.primary,
       fontFamily: 'monospace',
     },
     sliderUnit: {
       fontSize: '1rem',
-      color: '#6b7280',
+      color: colors.secondary,
       marginLeft: '0.25rem',
     },
     rulerContainer: {
@@ -257,9 +259,9 @@ export default function BMICalculator() {
     rulerWrapper: {
       position: 'relative' as const,
       height: '40px',
-      backgroundColor: '#f9fafb',
+      backgroundColor: colors.background,
       borderRadius: '4px',
-      border: '1px solid #e5e7eb',
+      border: `1px solid ${colors.cardBorder}`,
       overflow: 'hidden' as const,
       cursor: 'grab' as const,
       userSelect: 'none' as const,
@@ -300,28 +302,28 @@ export default function BMICalculator() {
     },
     rulerMarkLine: {
       width: '1px',
-      backgroundColor: '#d1d5db',
+      backgroundColor: colors.border,
     },
     rulerMarkLineLarge: {
       width: '2px',
       height: '24px',
-      backgroundColor: '#9ca3af',
+      backgroundColor: colors.textMuted,
     },
     rulerMarkLineMedium: {
       width: '1px',
       height: '16px',
-      backgroundColor: '#d1d5db',
+      backgroundColor: colors.border,
     },
     rulerMarkLineSmall: {
       width: '1px',
       height: '8px',
-      backgroundColor: '#e5e7eb',
+      backgroundColor: colors.cardBorder,
     },
     rulerMarkLabel: {
       position: 'absolute' as const,
       top: '-1.75rem',
       fontSize: '0.875rem',
-      color: '#1f2937',
+      color: colors.textPrimary,
       fontWeight: '600' as const,
       whiteSpace: 'nowrap' as const,
     },
@@ -332,10 +334,10 @@ export default function BMICalculator() {
       transform: 'translateX(-50%)',
       width: '3px',
       height: '100%',
-      backgroundColor: '#3b82f6',
+      backgroundColor: colors.primary,
       pointerEvents: 'none' as const,
       zIndex: 20,
-      boxShadow: '0 0 8px rgba(59, 130, 246, 0.5)',
+      boxShadow: `0 0 8px ${colors.primary}80`,
     },
     centerIndicatorTop: {
       position: 'absolute' as const,
@@ -346,7 +348,7 @@ export default function BMICalculator() {
       height: 0,
       borderLeft: '6px solid transparent',
       borderRight: '6px solid transparent',
-      borderTop: '8px solid #3b82f6',
+      borderTop: `8px solid ${colors.primary}`,
     },
     centerIndicatorBottom: {
       position: 'absolute' as const,
@@ -357,7 +359,7 @@ export default function BMICalculator() {
       height: 0,
       borderLeft: '6px solid transparent',
       borderRight: '6px solid transparent',
-      borderBottom: '8px solid #3b82f6',
+      borderBottom: `8px solid ${colors.primary}`,
     },
     legend: {
       display: 'grid',
@@ -370,7 +372,7 @@ export default function BMICalculator() {
       alignItems: 'center',
       gap: '0.75rem',
       padding: '0.75rem',
-      backgroundColor: '#f9fafb',
+      backgroundColor: colors.background,
       borderRadius: '0.5rem',
       fontSize: '0.875rem',
     },
@@ -385,10 +387,10 @@ export default function BMICalculator() {
     },
     legendName: {
       fontWeight: '600' as const,
-      color: '#1f2937',
+      color: colors.textPrimary,
     },
     legendRange: {
-      color: '#6b7280',
+      color: colors.secondary,
       fontSize: '0.8125rem',
     },
   };

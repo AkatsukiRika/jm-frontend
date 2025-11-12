@@ -1,26 +1,26 @@
 .container {
   display: flex;
   min-height: calc(100vh - 64px);
-  background-color: #f9fafb;
+  background-color: var(--background);
 }
 
 /* PC端侧边栏 */
 .sidebar {
   width: 280px;
-  background-color: #ffffff;
-  border-right: 1px solid #e5e7eb;
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--card-border);
   flex-shrink: 0;
 }
 
 .sidebarHeader {
   padding: 1.5rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .sidebarHeader h2 {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -37,7 +37,7 @@
   padding: 1rem 1.5rem;
   background: transparent;
   border: none;
-  color: #6b7280;
+  color: var(--secondary);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -47,14 +47,14 @@
 }
 
 .menuItem:hover {
-  color: #1f2937;
-  background-color: #f3f4f6;
+  color: var(--text-primary);
+  background-color: var(--card-border);
 }
 
 .menuItem.active {
-  color: #3b82f6;
-  background-color: #eff6ff;
-  border-left-color: #3b82f6;
+  color: var(--primary);
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left-color: var(--primary);
 }
 
 /* 移动端列表页 */
@@ -66,10 +66,10 @@
 .content {
   flex: 1;
   overflow-y: auto;
-  background-color: #ffffff;
+  background-color: var(--card-bg);
   margin: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--card-shadow);
 }
 
 .backButton {
@@ -99,7 +99,7 @@
     display: none;
     flex-direction: column;
     width: 100%;
-    background-color: #ffffff;
+    background-color: var(--card-bg);
     padding: 1rem;
   }
 
@@ -110,7 +110,7 @@
   .mobileTitle {
     font-size: 1.75rem;
     font-weight: bold;
-    color: #1f2937;
+    color: var(--text-primary);
     margin-bottom: 1.5rem;
     padding: 0 0.5rem;
   }
@@ -127,10 +127,10 @@
     justify-content: space-between;
     width: 100%;
     padding: 1.25rem 1rem;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 0.5rem;
-    color: #1f2937;
+    color: var(--text-primary);
     font-size: 1.125rem;
     font-weight: 500;
     cursor: pointer;
@@ -138,12 +138,12 @@
   }
 
   .mobileMenuItem:hover {
-    background-color: #f9fafb;
-    border-color: #3b82f6;
+    background-color: var(--background);
+    border-color: var(--primary);
   }
 
   .arrow {
-    color: #9ca3af;
+    color: var(--text-muted);
     font-size: 1.5rem;
   }
 
@@ -167,8 +167,8 @@
     padding: 1rem 1.5rem;
     background: transparent;
     border: none;
-    border-bottom: 1px solid #e5e7eb;
-    color: #3b82f6;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--primary);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
@@ -178,7 +178,7 @@
   }
 
   .backButton:hover {
-    background-color: #f9fafb;
+    background-color: var(--background);
   }
 
   .markdownWrapper {

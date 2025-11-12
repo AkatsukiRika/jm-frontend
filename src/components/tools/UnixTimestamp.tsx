@@ -1,8 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useThemeColors } from '@/lib/hooks/useThemeColors';
 
 export default function UnixTimestamp() {
+  const colors = useThemeColors();
+
   // 格式化日期时间为 "YYYY/MM/DD HH:mm:ss"
   const formatDateTime = (date: Date): string => {
     const year = date.getFullYear();
@@ -168,12 +171,12 @@ export default function UnixTimestamp() {
     title: {
       fontSize: '1.75rem',
       fontWeight: 'bold',
-      color: '#1f2937',
+      color: colors.textPrimary,
       marginBottom: '1.5rem',
     },
     currentSection: {
-      backgroundColor: '#eff6ff',
-      border: '2px solid #3b82f6',
+      backgroundColor: 'rgba(59, 130, 246, 0.1)',
+      border: `2px solid ${colors.primary}`,
       borderRadius: '0.5rem',
       padding: '1.5rem',
       marginBottom: '2rem',
@@ -181,7 +184,7 @@ export default function UnixTimestamp() {
     currentTitle: {
       fontSize: '1rem',
       fontWeight: '600',
-      color: '#1f2937',
+      color: colors.textPrimary,
       marginBottom: '1rem',
     },
     timestampRow: {
@@ -192,18 +195,18 @@ export default function UnixTimestamp() {
     },
     timestampLabel: {
       fontSize: '0.95rem',
-      color: '#6b7280',
+      color: colors.secondary,
       fontWeight: '500',
     },
     timestampValue: {
       fontSize: '1.125rem',
-      color: '#1f2937',
+      color: colors.textPrimary,
       fontWeight: '600',
       fontFamily: 'monospace',
     },
     section: {
-      backgroundColor: '#ffffff',
-      border: '1px solid #e5e7eb',
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.cardBorder}`,
       borderRadius: '0.5rem',
       padding: '1.5rem',
       marginBottom: '1.5rem',
@@ -211,7 +214,7 @@ export default function UnixTimestamp() {
     sectionTitle: {
       fontSize: '1.125rem',
       fontWeight: '600',
-      color: '#1f2937',
+      color: colors.textPrimary,
       marginBottom: '1rem',
     },
     inputGroup: {
@@ -221,21 +224,23 @@ export default function UnixTimestamp() {
       display: 'block',
       fontSize: '0.875rem',
       fontWeight: '500',
-      color: '#6b7280',
+      color: colors.secondary,
       marginBottom: '0.5rem',
     },
     input: {
       width: '100%',
       padding: '0.75rem',
-      border: '1px solid #d1d5db',
+      border: `1px solid ${colors.inputBorder}`,
       borderRadius: '0.375rem',
       fontSize: '1rem',
       fontFamily: 'monospace',
+      backgroundColor: colors.inputBg,
+      color: colors.textPrimary,
       transition: 'border-color 0.2s',
     },
     button: {
       padding: '0.75rem 1.5rem',
-      backgroundColor: '#3b82f6',
+      backgroundColor: colors.primary,
       color: '#ffffff',
       border: 'none',
       borderRadius: '0.375rem',
@@ -253,28 +258,28 @@ export default function UnixTimestamp() {
     resultBox: {
       flex: 1,
       padding: '0.75rem',
-      backgroundColor: '#f9fafb',
-      border: '1px solid #e5e7eb',
+      backgroundColor: colors.background,
+      border: `1px solid ${colors.cardBorder}`,
       borderRadius: '0.375rem',
       fontFamily: 'monospace',
       fontSize: '0.95rem',
-      color: '#1f2937',
+      color: colors.textPrimary,
     },
     resultBoxFull: {
       width: '100%',
       padding: '0.75rem',
-      backgroundColor: '#f9fafb',
-      border: '1px solid #e5e7eb',
+      backgroundColor: colors.background,
+      border: `1px solid ${colors.cardBorder}`,
       borderRadius: '0.375rem',
       fontFamily: 'monospace',
       fontSize: '0.95rem',
-      color: '#1f2937',
+      color: colors.textPrimary,
     },
     copyButton: {
       padding: '0.5rem 1rem',
-      backgroundColor: '#f3f4f6',
-      color: '#6b7280',
-      border: '1px solid #d1d5db',
+      backgroundColor: colors.cardBorder,
+      color: colors.secondary,
+      border: `1px solid ${colors.border}`,
       borderRadius: '0.375rem',
       fontSize: '0.875rem',
       fontWeight: '500',
@@ -284,7 +289,7 @@ export default function UnixTimestamp() {
     },
     hint: {
       fontSize: '0.8125rem',
-      color: '#9ca3af',
+      color: colors.textMuted,
       marginTop: '0.5rem',
     },
     toast: {
@@ -353,13 +358,13 @@ export default function UnixTimestamp() {
         {(dateToSeconds || dateToMilliseconds) && (
           <div style={styles.resultGroup}>
             <div style={styles.resultBox}>
-              <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '0.25rem' }}>
+              <div style={{ fontSize: '0.75rem', color: colors.secondary, marginBottom: '0.25rem' }}>
                 Seconds
               </div>
               {dateToSeconds}
             </div>
             <div style={styles.resultBox}>
-              <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '0.25rem' }}>
+              <div style={{ fontSize: '0.75rem', color: colors.secondary, marginBottom: '0.25rem' }}>
                 Milliseconds
               </div>
               {dateToMilliseconds}

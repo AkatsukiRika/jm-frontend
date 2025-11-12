@@ -1,7 +1,7 @@
 /* Markdown 通用样式 */
 .markdown {
   line-height: 1.8;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .markdown h1 {
@@ -9,8 +9,8 @@
   font-weight: bold;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
-  color: #111827;
-  border-bottom: 2px solid #e5e7eb;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--card-border);
   padding-bottom: 0.5rem;
 }
 
@@ -23,7 +23,7 @@
   font-weight: bold;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .markdown h3 {
@@ -31,12 +31,12 @@
   font-weight: 600;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
-  color: #374151;
+  color: var(--text-secondary);
 }
 
 .markdown p {
   font-size: 1.125rem;
-  color: #4b5563;
+  color: var(--secondary);
   margin-bottom: 1rem;
 }
 
@@ -48,13 +48,13 @@
 
 .markdown li {
   font-size: 1.125rem;
-  color: #4b5563;
+  color: var(--secondary);
   margin-bottom: 0.5rem;
 }
 
 .markdown strong {
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .markdown em {
@@ -62,41 +62,42 @@
 }
 
 .markdown a {
-  color: #3b82f6;
+  color: var(--primary);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
 }
 
 .markdown a:hover {
-  border-bottom-color: #3b82f6;
+  border-bottom-color: var(--primary);
 }
 
 .markdown blockquote {
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid var(--primary);
   padding-left: 1.5rem;
   margin: 1.5rem 0;
-  color: #6b7280;
+  color: var(--secondary);
   font-style: italic;
 }
 
 .markdown hr {
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--card-border);
   margin: 2rem 0;
 }
 
 .markdown code {
-  background-color: #f3f4f6;
+  background-color: var(--card-border);
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
   font-size: 0.9em;
   font-family: 'Courier New', monospace;
-  color: #dc2626;
+  color: var(--error);
 }
 
 .markdown pre {
-  background-color: #1f2937;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -106,7 +107,7 @@
 .markdown pre code {
   background-color: transparent;
   padding: 0;
-  color: #f3f4f6;
+  color: var(--text-primary);
 }
 
 .markdown table {
@@ -118,29 +119,29 @@
 }
 
 .markdown table thead {
-  background-color: #f3f4f6;
+  background-color: var(--card-border);
 }
 
 .markdown table th,
 .markdown table td {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--card-border);
   padding: 0.75rem 1rem;
   text-align: left;
 }
 
 .markdown table th {
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   font-size: 1rem;
 }
 
 .markdown table td {
   font-size: 1rem;
-  color: #4b5563;
+  color: var(--secondary);
 }
 
 .markdown table tbody tr:hover {
-  background-color: #f9fafb;
+  background-color: var(--background);
 }
 
 .markdown img {
@@ -148,7 +149,7 @@
   height: auto;
   display: block;
   margin: 1.5rem auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--card-shadow);
 }
 
 /* 移动端响应式 */

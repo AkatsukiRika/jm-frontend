@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import lottie, { AnimationItem } from 'lottie-web';
+import { useThemeColors } from '@/lib/hooks/useThemeColors';
 
 export default function LottiePreviewer() {
+  const colors = useThemeColors();
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<AnimationItem | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -149,7 +151,7 @@ export default function LottiePreviewer() {
     title: {
       fontSize: '1.75rem',
       fontWeight: 'bold' as const,
-      color: '#1f2937',
+      color: colors.textPrimary,
       marginBottom: '1.5rem',
       textAlign: 'center' as const,
     },
@@ -159,9 +161,9 @@ export default function LottiePreviewer() {
     previewContainer: {
       width: '100%',
       minHeight: `400px`,
-      border: '2px solid #3b82f6',
+      border: `2px solid ${colors.primary}`,
       borderRadius: '0.5rem',
-      backgroundColor: '#ffffff',
+      backgroundColor: colors.cardBg,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -169,12 +171,12 @@ export default function LottiePreviewer() {
       position: 'relative' as const,
     },
     emptyText: {
-      color: '#9ca3af',
+      color: colors.textMuted,
       fontSize: '1rem',
     },
     controlSection: {
-      backgroundColor: '#ffffff',
-      border: '1px solid #e5e7eb',
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.cardBorder}`,
       borderRadius: '0.5rem',
       padding: '1rem',
       marginBottom: '1rem',
@@ -186,7 +188,7 @@ export default function LottiePreviewer() {
     },
     button: {
       padding: '0.75rem 1.5rem',
-      backgroundColor: '#3b82f6',
+      backgroundColor: colors.primary,
       color: '#ffffff',
       border: 'none',
       borderRadius: '0.375rem',
@@ -196,21 +198,21 @@ export default function LottiePreviewer() {
       transition: 'background-color 0.2s',
     },
     buttonSecondary: {
-      backgroundColor: '#6b7280',
+      backgroundColor: colors.secondary,
     },
     buttonDanger: {
-      backgroundColor: '#ef4444',
+      backgroundColor: colors.error,
     },
     progressSection: {
-      backgroundColor: '#ffffff',
-      border: '1px solid #e5e7eb',
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.cardBorder}`,
       borderRadius: '0.5rem',
       padding: '1rem',
       marginBottom: '1rem',
     },
     progressLabel: {
       fontSize: '0.875rem',
-      color: '#6b7280',
+      color: colors.secondary,
       marginBottom: '0.5rem',
       textAlign: 'center' as const,
     },
@@ -218,15 +220,15 @@ export default function LottiePreviewer() {
       width: '100%',
       height: '6px',
       borderRadius: '3px',
-      background: '#e5e7eb',
+      background: colors.cardBorder,
       outline: 'none',
       WebkitAppearance: 'none' as const,
       appearance: 'none' as const,
       cursor: 'pointer',
     },
     importSection: {
-      backgroundColor: '#ffffff',
-      border: '1px solid #e5e7eb',
+      backgroundColor: colors.cardBg,
+      border: `1px solid ${colors.cardBorder}`,
       borderRadius: '0.5rem',
       padding: '1rem',
     },
@@ -266,7 +268,7 @@ export default function LottiePreviewer() {
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: #3b82f6;
+      background: ${colors.primary};
       cursor: pointer;
     }
 
@@ -274,7 +276,7 @@ export default function LottiePreviewer() {
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: #3b82f6;
+      background: ${colors.primary};
       cursor: pointer;
       border: none;
     }
