@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
@@ -9,6 +9,7 @@ import QuestionDeckCreator from '@/components/tools/QuestionDeckCreator';
 import BMICalculator from '@/components/tools/BMICalculator';
 import LottiePreviewer from '@/components/tools/LottiePreviewer';
 import UnixTimestamp from '@/components/tools/UnixTimestamp';
+import { useTranslation } from '@/components/I18nProvider';
 
 interface ToolItem {
   id: string;
@@ -16,18 +17,18 @@ interface ToolItem {
   component: React.ComponentType;
 }
 
-const toolItems: ToolItem[] = [
-  { id: 'question-deck', label: 'Question Deck Creator', component: QuestionDeckCreator },
-  { id: 'bmi-calculator', label: 'BMI Calculator', component: BMICalculator },
-  { id: 'lottie-previewer', label: 'Lottie Previewer', component: LottiePreviewer },
-  { id: 'unix-timestamp', label: 'Unix Timestamp', component: UnixTimestamp },
-];
-
 export default function Tools() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showList, setShowList] = useState(true);
+  const { t } = useTranslation();
 
+  const toolItems: ToolItem[] = useMemo(() => [
+    { id: 'question-deck', label: 'Question Deck Creator', component: QuestionDeckCreator },
+    { id: 'bmi-calculator', label: t.tools.bmi.title, component: BMICalculator },
+    { id: 'lottie-previewer', label: t.tools.lottie.title, component: LottiePreviewer },
+    { id: 'unix-timestamp', label: t.tools.unix.title, component: UnixTimestamp },
+  ], [t]);
   const currentTool = searchParams.get('tool') || toolItems[0].id;
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function Tools() {
     if (!searchParams.get('tool')) {
       router.replace(`/tools?tool=${toolItems[0].id}`);
     }
-  }, [searchParams, router]);
+  }, [searchParams, router, toolItems]);
 
   const handleMenuClick = (id: string) => {
     router.push(`/tools?tool=${id}`);

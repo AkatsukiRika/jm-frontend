@@ -39,4 +39,84 @@ export const zhTW: Translations = {
       },
     },
   },
+  tools: {
+    lottie: {
+      title: 'Lottie 預覽器',
+      empty: '尚未載入動畫',
+      play: '播放',
+      pause: '暫停',
+      stop: '停止',
+      frameLabel: '幀：',
+      loadImages: '載入圖片',
+      loadJSON: '載入 JSON',
+      clearPreview: '清空預覽區域',
+      toast: {
+        imagesLoaded: '圖片載入成功！',
+      },
+      errors: {
+        loadJsonFailed: 'JSON 檔案載入失敗，請檢查檔案格式。',
+      },
+    },
+    unix: {
+      title: 'Unix 時間戳',
+      currentTitle: '當前時間戳',
+      labels: {
+        datetime: '日期時間：',
+        seconds: '秒：',
+        milliseconds: '毫秒：',
+      },
+      dateToTs: {
+        title: '日期時間 → 時間戳',
+        label: '日期時間（YYYY/MM/DD HH:mm:ss）',
+        placeholder: '1970/01/01 08:00:00',
+        hint: '按 Enter 或點擊轉換按鈕',
+        convert: '轉換',
+        resultLabels: {
+          seconds: '秒',
+          milliseconds: '毫秒',
+        },
+      },
+      secondsToDate: {
+        title: '秒時間戳 → 日期時間',
+        label: '時間戳（秒）',
+        placeholder: '0',
+        convert: '轉換',
+        copy: '複製',
+      },
+      msToDate: {
+        title: '毫秒時間戳 → 日期時間',
+        label: '時間戳（毫秒）',
+        placeholder: '0',
+        convert: '轉換',
+        copy: '複製',
+      },
+      toast: {
+        copied: '已複製到剪貼簿！',
+      },
+      errors: {
+        invalidDate: '日期格式不正確',
+        invalidTimestamp: '時間戳無效',
+      },
+    },
+    bmi: {
+      title: 'BMI 計算器',
+      display: {
+        bmiLabel: 'BMI',
+      },
+      labels: {
+        height: '身高',
+        weight: '體重',
+      },
+      units: {
+        cm: '公分',
+        kg: '公斤',
+      },
+      categories: {
+        underweight: { name: '過輕', range: '< 18.5' },
+        normal: { name: '正常', range: '18.5 - 24.9' },
+        overweight: { name: '過重', range: '25 - 29.9' },
+        obese: { name: '肥胖', range: '≥ 30' },
+      },
+    },
+  },
 };

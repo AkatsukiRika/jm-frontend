@@ -3,9 +3,11 @@
 import { useState, useEffect, useRef } from 'react';
 import lottie, { AnimationItem } from 'lottie-web';
 import { useThemeColors } from '@/lib/hooks/useThemeColors';
+import { useTranslation } from '@/components/I18nProvider';
 
 export default function LottiePreviewer() {
   const colors = useThemeColors();
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<AnimationItem | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -64,7 +66,7 @@ export default function LottiePreviewer() {
       }
     } catch (error) {
       console.error('Failed to load JSON:', error);
-      alert('Failed to load JSON file. Please check the file format.');
+      alert(t.tools.lottie.errors.loadJsonFailed);
     }
   };
 
@@ -286,13 +288,11 @@ export default function LottiePreviewer() {
     <>
       <style>{sliderStyles}</style>
       <div style={styles.container}>
-        <h2 style={styles.title}>Lottie Previewer</h2>
-
         {/* Preview Area */}
         <div style={styles.previewSection}>
           <div style={styles.previewContainer} ref={containerRef}>
             {!animationRef.current && (
-              <div style={styles.emptyText}>No animation loaded</div>
+              <div style={styles.emptyText}>{t.tools.lottie.empty}</div>
             )}
           </div>
         </div>
@@ -307,7 +307,7 @@ export default function LottiePreviewer() {
               onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
               onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
             >
-              ▶ Play
+              ▶ {t.tools.lottie.play}
             </button>
             <button
               style={{ ...styles.button, ...styles.buttonSecondary }}
@@ -316,7 +316,7 @@ export default function LottiePreviewer() {
               onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#4b5563')}
               onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#6b7280')}
             >
-              ⏸ Pause
+              ⏸ {t.tools.lottie.pause}
             </button>
             <button
               style={{ ...styles.button, ...styles.buttonSecondary }}
@@ -325,7 +325,7 @@ export default function LottiePreviewer() {
               onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#4b5563')}
               onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#6b7280')}
             >
-              ⏹ Stop
+              ⏹ {t.tools.lottie.stop}
             </button>
           </div>
         </div>
@@ -333,7 +333,7 @@ export default function LottiePreviewer() {
         {/* Progress Bar */}
         <div style={styles.progressSection}>
           <div style={styles.progressLabel}>
-            Frame: {currentFrame} / {totalFrames}
+            {t.tools.lottie.frameLabel} {currentFrame} / {totalFrames}
           </div>
           <input
             type="range"
@@ -355,7 +355,7 @@ export default function LottiePreviewer() {
               onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
               onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
             >
-              Load Images
+              {t.tools.lottie.loadImages}
             </button>
             <button
               style={styles.button}
@@ -363,7 +363,7 @@ export default function LottiePreviewer() {
               onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
               onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
             >
-              Load JSON
+              {t.tools.lottie.loadJSON}
             </button>
             <button
               style={{ ...styles.button, ...styles.buttonDanger }}
@@ -371,7 +371,7 @@ export default function LottiePreviewer() {
               onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#dc2626')}
               onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#ef4444')}
             >
-              Clear Preview Area
+              {t.tools.lottie.clearPreview}
             </button>
           </div>
         </div>
@@ -398,7 +398,7 @@ export default function LottiePreviewer() {
       {showToast && (
         <div style={styles.toast}>
           <span>✓</span>
-          <span>Images loaded successfully!</span>
+          <span>{t.tools.lottie.toast.imagesLoaded}</span>
         </div>
       )}
     </>

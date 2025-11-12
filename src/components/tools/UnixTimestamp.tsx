@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useThemeColors } from '@/lib/hooks/useThemeColors';
+import { useTranslation } from '@/components/I18nProvider';
 
 export default function UnixTimestamp() {
   const colors = useThemeColors();
+  const { t } = useTranslation();
 
   // 格式化日期时间为 "YYYY/MM/DD HH:mm:ss"
   const formatDateTime = (date: Date): string => {
@@ -100,8 +102,8 @@ export default function UnixTimestamp() {
       setDateToSeconds(Math.floor(date.getTime() / 1000).toString());
       setDateToMilliseconds(date.getTime().toString());
     } else {
-      setDateToSeconds('Invalid date format');
-      setDateToMilliseconds('Invalid date format');
+      setDateToSeconds(t.tools.unix.errors.invalidDate);
+      setDateToMilliseconds(t.tools.unix.errors.invalidDate);
     }
   };
 
@@ -112,7 +114,7 @@ export default function UnixTimestamp() {
       const date = new Date(seconds * 1000);
       setSecondsToDate(formatDateTime(date));
     } else {
-      setSecondsToDate('Invalid timestamp');
+      setSecondsToDate(t.tools.unix.errors.invalidTimestamp);
     }
   };
 
@@ -123,7 +125,7 @@ export default function UnixTimestamp() {
       const date = new Date(milliseconds);
       setMillisecondsToDate(formatDateTime(date));
     } else {
-      setMillisecondsToDate('Invalid timestamp');
+      setMillisecondsToDate(t.tools.unix.errors.invalidTimestamp);
     }
   };
 
@@ -317,35 +319,35 @@ export default function UnixTimestamp() {
       <div style={styles.container}>
       {/* 当前时间戳 */}
       <div style={styles.currentSection}>
-        <div style={styles.currentTitle}>Current Timestamp</div>
+        <div style={styles.currentTitle}>{t.tools.unix.currentTitle}</div>
         <div style={styles.timestampRow}>
-          <span style={styles.timestampLabel}>Date Time:</span>
+          <span style={styles.timestampLabel}>{t.tools.unix.labels.datetime}</span>
           <span style={styles.timestampValue}>{currentTimestamp.dateTime}</span>
         </div>
         <div style={styles.timestampRow}>
-          <span style={styles.timestampLabel}>Seconds:</span>
+          <span style={styles.timestampLabel}>{t.tools.unix.labels.seconds}</span>
           <span style={styles.timestampValue}>{currentTimestamp.seconds}</span>
         </div>
         <div style={styles.timestampRow}>
-          <span style={styles.timestampLabel}>Milliseconds:</span>
+          <span style={styles.timestampLabel}>{t.tools.unix.labels.milliseconds}</span>
           <span style={styles.timestampValue}>{currentTimestamp.milliseconds}</span>
         </div>
       </div>
 
       {/* 日期时间 -> 时间戳 */}
       <div style={styles.section}>
-        <div style={styles.sectionTitle}>📅 Date Time → Timestamp</div>
+        <div style={styles.sectionTitle}>📅 {t.tools.unix.dateToTs.title}</div>
         <div style={styles.inputGroup}>
-          <label style={styles.label}>Date Time (YYYY/MM/DD HH:mm:ss)</label>
+          <label style={styles.label}>{t.tools.unix.dateToTs.label}</label>
           <input
             type="text"
             style={styles.input}
-            placeholder="1970/01/01 08:00:00"
+            placeholder={t.tools.unix.dateToTs.placeholder}
             value={dateTimeInput}
             onChange={(e) => setDateTimeInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleDateTimeToTimestamp()}
           />
-          <div style={styles.hint}>Press Enter or click Convert button</div>
+          <div style={styles.hint}>{t.tools.unix.dateToTs.hint}</div>
         </div>
         <button
           style={styles.button}
@@ -353,19 +355,19 @@ export default function UnixTimestamp() {
           onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
           onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
         >
-          Convert
+          {t.tools.unix.dateToTs.convert}
         </button>
         {(dateToSeconds || dateToMilliseconds) && (
           <div style={styles.resultGroup}>
             <div style={styles.resultBox}>
               <div style={{ fontSize: '0.75rem', color: colors.secondary, marginBottom: '0.25rem' }}>
-                Seconds
+                {t.tools.unix.dateToTs.resultLabels.seconds}
               </div>
               {dateToSeconds}
             </div>
             <div style={styles.resultBox}>
               <div style={{ fontSize: '0.75rem', color: colors.secondary, marginBottom: '0.25rem' }}>
-                Milliseconds
+                {t.tools.unix.dateToTs.resultLabels.milliseconds}
               </div>
               {dateToMilliseconds}
             </div>
@@ -375,13 +377,13 @@ export default function UnixTimestamp() {
 
       {/* 秒时间戳 -> 日期时间 */}
       <div style={styles.section}>
-        <div style={styles.sectionTitle}>⏱️ Seconds Timestamp → Date Time</div>
+        <div style={styles.sectionTitle}>⏱️ {t.tools.unix.secondsToDate.title}</div>
         <div style={styles.inputGroup}>
-          <label style={styles.label}>Timestamp (seconds)</label>
+          <label style={styles.label}>{t.tools.unix.secondsToDate.label}</label>
           <input
             type="text"
             style={styles.input}
-            placeholder="0"
+            placeholder={t.tools.unix.secondsToDate.placeholder}
             value={secondsInput}
             onChange={(e) => setSecondsInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSecondsToDateTime()}
@@ -393,7 +395,7 @@ export default function UnixTimestamp() {
           onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
           onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
         >
-          Convert
+          {t.tools.unix.secondsToDate.convert}
         </button>
         {secondsToDate && (
           <div style={{ ...styles.resultGroup, marginTop: '1rem' }}>
@@ -410,7 +412,7 @@ export default function UnixTimestamp() {
                 e.currentTarget.style.color = '#6b7280';
               }}
             >
-              Copy
+              {t.tools.unix.secondsToDate.copy}
             </button>
           </div>
         )}
@@ -418,13 +420,13 @@ export default function UnixTimestamp() {
 
       {/* 毫秒时间戳 -> 日期时间 */}
       <div style={styles.section}>
-        <div style={styles.sectionTitle}>⚡ Milliseconds Timestamp → Date Time</div>
+        <div style={styles.sectionTitle}>⚡ {t.tools.unix.msToDate.title}</div>
         <div style={styles.inputGroup}>
-          <label style={styles.label}>Timestamp (milliseconds)</label>
+          <label style={styles.label}>{t.tools.unix.msToDate.label}</label>
           <input
             type="text"
             style={styles.input}
-            placeholder="0"
+            placeholder={t.tools.unix.msToDate.placeholder}
             value={millisecondsInput}
             onChange={(e) => setMillisecondsInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleMillisecondsToDateTime()}
@@ -436,7 +438,7 @@ export default function UnixTimestamp() {
           onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
           onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
         >
-          Convert
+          {t.tools.unix.msToDate.convert}
         </button>
         {millisecondsToDate && (
           <div style={{ ...styles.resultGroup, marginTop: '1rem' }}>
@@ -453,7 +455,7 @@ export default function UnixTimestamp() {
                 e.currentTarget.style.color = '#6b7280';
               }}
             >
-              Copy
+              {t.tools.unix.msToDate.copy}
             </button>
           </div>
         )}
@@ -464,7 +466,7 @@ export default function UnixTimestamp() {
       {showToast && (
         <div style={styles.toast}>
           <span>✓</span>
-          <span>Copied to clipboard!</span>
+          <span>{t.tools.unix.toast.copied}</span>
         </div>
       )}
     </>

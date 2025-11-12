@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useThemeColors } from '@/lib/hooks/useThemeColors';
+import { useTranslation } from '@/components/I18nProvider';
 
 interface BMICategory {
   name: string;
@@ -12,6 +13,7 @@ interface BMICategory {
 
 export default function BMICalculator() {
   const colors = useThemeColors();
+  const { t } = useTranslation();
   const [height, setHeight] = useState(170); // cm
   const [weight, setWeight] = useState(65.0); // kg
   const [isDraggingHeight, setIsDraggingHeight] = useState(false);
@@ -29,31 +31,31 @@ export default function BMICalculator() {
   const getBMICategory = (bmi: number): BMICategory => {
     if (bmi < 18.5) {
       return {
-        name: 'Underweight',
+        name: t.tools.bmi.categories.underweight.name,
         color: '#dbeafe',
         textColor: '#1e40af',
-        range: '< 18.5',
+        range: t.tools.bmi.categories.underweight.range,
       };
     } else if (bmi < 25) {
       return {
-        name: 'Normal Weight',
+        name: t.tools.bmi.categories.normal.name,
         color: '#d1fae5',
         textColor: '#065f46',
-        range: '18.5 - 24.9',
+        range: t.tools.bmi.categories.normal.range,
       };
     } else if (bmi < 30) {
       return {
-        name: 'Overweight',
+        name: t.tools.bmi.categories.overweight.name,
         color: '#fed7aa',
         textColor: '#92400e',
-        range: '25 - 29.9',
+        range: t.tools.bmi.categories.overweight.range,
       };
     } else {
       return {
-        name: 'Obese',
+        name: t.tools.bmi.categories.obese.name,
         color: '#fecaca',
         textColor: '#991b1b',
-        range: '≥ 30',
+        range: t.tools.bmi.categories.obese.range,
       };
     }
   };
@@ -398,22 +400,20 @@ export default function BMICalculator() {
   return (
     <>
       <div style={styles.container}>
-        <h2 style={styles.title}>BMI Calculator</h2>
-
         {/* BMI 显示区域 */}
         <div style={styles.bmiDisplay}>
           <div style={styles.bmiValue}>{bmi.toFixed(2)}</div>
           <div style={styles.bmiCategory}>{category.name}</div>
-          <div style={styles.bmiRange}>BMI {category.range}</div>
+          <div style={styles.bmiRange}>{t.tools.bmi.display.bmiLabel} {category.range}</div>
         </div>
 
         {/* 身高标尺 */}
         <div style={styles.sliderSection}>
           <div style={styles.sliderHeader}>
-            <span style={styles.sliderLabel}>Height</span>
+            <span style={styles.sliderLabel}>{t.tools.bmi.labels.height}</span>
             <div>
               <span style={styles.sliderValue}>{Math.round(height)}</span>
-              <span style={styles.sliderUnit}>cm</span>
+              <span style={styles.sliderUnit}>{t.tools.bmi.units.cm}</span>
             </div>
           </div>
           <div style={styles.rulerContainer}>
@@ -462,10 +462,10 @@ export default function BMICalculator() {
         {/* 体重标尺 */}
         <div style={styles.sliderSection}>
           <div style={styles.sliderHeader}>
-            <span style={styles.sliderLabel}>Weight</span>
+            <span style={styles.sliderLabel}>{t.tools.bmi.labels.weight}</span>
             <div>
               <span style={styles.sliderValue}>{(Math.round(weight * 10) / 10).toFixed(1)}</span>
-              <span style={styles.sliderUnit}>kg</span>
+              <span style={styles.sliderUnit}>{t.tools.bmi.units.kg}</span>
             </div>
           </div>
           <div style={styles.rulerContainer}>
@@ -516,29 +516,29 @@ export default function BMICalculator() {
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendColor, backgroundColor: '#3b82f6' }} />
             <div style={styles.legendText}>
-              <div style={styles.legendName}>Underweight</div>
-              <div style={styles.legendRange}>BMI &lt; 18.5</div>
+              <div style={styles.legendName}>{t.tools.bmi.categories.underweight.name}</div>
+              <div style={styles.legendRange}>{t.tools.bmi.display.bmiLabel} &lt; 18.5</div>
             </div>
           </div>
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendColor, backgroundColor: '#10b981' }} />
             <div style={styles.legendText}>
-              <div style={styles.legendName}>Normal Weight</div>
-              <div style={styles.legendRange}>BMI 18.5 - 24.9</div>
+              <div style={styles.legendName}>{t.tools.bmi.categories.normal.name}</div>
+              <div style={styles.legendRange}>{t.tools.bmi.display.bmiLabel} 18.5 - 24.9</div>
             </div>
           </div>
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendColor, backgroundColor: '#f59e0b' }} />
             <div style={styles.legendText}>
-              <div style={styles.legendName}>Overweight</div>
-              <div style={styles.legendRange}>BMI 25 - 29.9</div>
+              <div style={styles.legendName}>{t.tools.bmi.categories.overweight.name}</div>
+              <div style={styles.legendRange}>{t.tools.bmi.display.bmiLabel} 25 - 29.9</div>
             </div>
           </div>
           <div style={styles.legendItem}>
             <div style={{ ...styles.legendColor, backgroundColor: '#ef4444' }} />
             <div style={styles.legendText}>
-              <div style={styles.legendName}>Obese</div>
-              <div style={styles.legendRange}>BMI ≥ 30</div>
+              <div style={styles.legendName}>{t.tools.bmi.categories.obese.name}</div>
+              <div style={styles.legendRange}>{t.tools.bmi.display.bmiLabel} ≥ 30</div>
             </div>
           </div>
         </div>
