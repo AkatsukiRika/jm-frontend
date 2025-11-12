@@ -310,8 +310,6 @@ export default function UnixTimestamp() {
   return (
     <>
       <div style={styles.container}>
-        <h2 style={styles.title}>Unix Timestamp Converter</h2>
-
       {/* 当前时间戳 */}
       <div style={styles.currentSection}>
         <div style={styles.currentTitle}>Current Timestamp</div>
