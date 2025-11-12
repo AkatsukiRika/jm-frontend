@@ -15,7 +15,7 @@ import { useTranslation } from '@/components/I18nProvider';
 import { localeNames, type Locale } from '@/lib/i18n/locales';
 
 export default function Settings() {
-  const { locale, setLocale } = useTranslation();
+  const { locale, setLocale, t } = useTranslation();
   const [currentTheme, setCurrentTheme] = useState<Theme>('light');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -49,7 +49,7 @@ export default function Settings() {
     e.preventDefault();
 
     if (!username.trim() || !password.trim()) {
-      toast.error('Please enter username and password');
+      toast.error(t.settings.account.toasts.emptyCreds);
       return;
     }
 
@@ -64,13 +64,13 @@ export default function Settings() {
         setLoggedIn(true);
         setCurrentUsername(username);
         setPassword('');
-        toast.success('Login successful!');
+        toast.success(t.settings.account.toasts.loginSuccess);
       } else {
         // 登录失败
-        toast.error(response.message || 'Login failed');
+        toast.error(response.message || t.settings.account.toasts.loginFailed);
       }
     } catch {
-      toast.error('Network error, please try again');
+      toast.error(t.settings.account.toasts.networkError);
     } finally {
       setIsLoading(false);
     }
@@ -82,21 +82,19 @@ export default function Settings() {
     setCurrentUsername('');
     setUsername('');
     setPassword('');
-    toast.success('Logged out successfully');
+    toast.success(t.settings.account.toasts.logoutSuccess);
   };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Settings</h1>
-
       {/* 语言和主题设置 */}
       <div className={styles.settingsSection}>
-        <h2 className={styles.sectionTitle}>Preferences</h2>
+        <h2 className={styles.sectionTitle}>{t.settings.preferences.title}</h2>
 
         {/* Language 选择 */}
         <div className={styles.settingItem}>
           <label htmlFor="language" className={styles.label}>
-            Language
+            {t.settings.preferences.language}
           </label>
           <select
             id="language"
@@ -113,7 +111,7 @@ export default function Settings() {
         {/* Theme 选择 */}
         <div className={styles.settingItem}>
           <label htmlFor="theme" className={styles.label}>
-            Theme
+            {t.settings.preferences.theme}
           </label>
           <select
             id="theme"
@@ -121,43 +119,45 @@ export default function Settings() {
             onChange={(e) => handleThemeChange(e.target.value as Theme)}
             className={styles.select}
           >
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
+            <option value="light">{t.settings.preferences.themeOptions.light}</option>
+            <option value="dark">{t.settings.preferences.themeOptions.dark}</option>
           </select>
         </div>
       </div>
 
       {/* 登录组件 */}
       <div className={styles.settingsSection}>
-        <h2 className={styles.sectionTitle}>Account</h2>
+        <h2 className={styles.sectionTitle}>{t.settings.account.title}</h2>
 
         <div className={styles.loginContainer}>
           {loggedIn ? (
             // 已登录状态
             <>
               <div className={styles.loggedInStatus}>
-                <p>You&apos;re currently logged in as {currentUsername}</p>
+                <p>
+                  {t.settings.account.loggedInAs} {currentUsername}
+                </p>
               </div>
               <button
                 type="button"
                 onClick={handleLogout}
                 className={styles.logoutButton}
               >
-                LOG OUT
+                {t.settings.account.logout}
               </button>
             </>
           ) : (
             // 未登录状态
             <>
               <div className={styles.loginPrompt}>
-                <p>You&apos;re not signed in yet.</p>
-                <p>Functions that require login will not be available.</p>
+                <p>{t.settings.account.notSignedIn}</p>
+                <p>{t.settings.account.loginRequirement}</p>
               </div>
 
               <form onSubmit={handleLogin} className={styles.loginForm}>
                 <div className={styles.formGroup}>
                   <label htmlFor="username" className={styles.formLabel}>
-                    Username
+                    {t.settings.account.username}
                   </label>
                   <input
                     type="text"
@@ -165,14 +165,14 @@ export default function Settings() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className={styles.input}
-                    placeholder="Enter your username"
+                    placeholder={t.settings.account.usernamePlaceholder}
                     disabled={isLoading}
                   />
                 </div>
 
                 <div className={styles.formGroup}>
                   <label htmlFor="password" className={styles.formLabel}>
-                    Password
+                    {t.settings.account.password}
                   </label>
                   <input
                     type="password"
@@ -180,7 +180,7 @@ export default function Settings() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={styles.input}
-                    placeholder="Enter your password"
+                    placeholder={t.settings.account.passwordPlaceholder}
                     disabled={isLoading}
                   />
                 </div>
@@ -190,7 +190,9 @@ export default function Settings() {
                   className={styles.loginButton}
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Signing in...' : 'Sign In'}
+                  {isLoading
+                    ? t.settings.account.signingIn
+                    : t.settings.account.signIn}
                 </button>
               </form>
             </>
