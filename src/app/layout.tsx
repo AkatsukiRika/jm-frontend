@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/styles/markdown.css";
 import Navbar from "@/components/Navbar";
 import ThemeProvider from "@/components/ThemeProvider";
+import { I18nProvider } from "@/components/I18nProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,8 +46,10 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider>
-          <Navbar />
-          {children}
+          <I18nProvider>
+            <Navbar />
+            {children}
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

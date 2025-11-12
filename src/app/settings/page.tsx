@@ -11,9 +11,11 @@ import {
   clearAuthInfo,
 } from '@/lib/auth';
 import { getTheme, setTheme, type Theme } from '@/lib/theme';
+import { useTranslation } from '@/components/I18nProvider';
+import { localeNames, type Locale } from '@/lib/i18n/locales';
 
 export default function Settings() {
-  const [language, setLanguage] = useState('English');
+  const { locale, setLocale } = useTranslation();
   const [currentTheme, setCurrentTheme] = useState<Theme>('light');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -36,6 +38,11 @@ export default function Settings() {
   const handleThemeChange = (newTheme: Theme) => {
     setCurrentTheme(newTheme);
     setTheme(newTheme);
+  };
+
+  // 处理语言切换
+  const handleLanguageChange = (newLocale: Locale) => {
+    setLocale(newLocale);
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -93,13 +100,13 @@ export default function Settings() {
           </label>
           <select
             id="language"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
+            value={locale}
+            onChange={(e) => handleLanguageChange(e.target.value as Locale)}
             className={styles.select}
           >
-            <option value="English">English</option>
-            <option value="简体中文">简体中文</option>
-            <option value="繁體中文">繁體中文</option>
+            <option value="en">{localeNames.en}</option>
+            <option value="zh-CN">{localeNames['zh-CN']}</option>
+            <option value="zh-TW">{localeNames['zh-TW']}</option>
           </select>
         </div>
 

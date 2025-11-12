@@ -4,17 +4,19 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import styles from './Navbar.module.css';
+import { useTranslation } from './I18nProvider';
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { t } = useTranslation();
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Documents', path: '/documents' },
-    { name: 'Download', path: '/download' },
-    { name: 'Tools', path: '/tools' },
-    { name: 'Settings', path: '/settings' },
+    { name: t.nav.home, path: '/' },
+    { name: t.nav.documents, path: '/documents' },
+    { name: t.nav.download, path: '/download' },
+    { name: t.nav.tools, path: '/tools' },
+    { name: t.nav.settings, path: '/settings' },
   ];
 
   const toggleDrawer = () => {
