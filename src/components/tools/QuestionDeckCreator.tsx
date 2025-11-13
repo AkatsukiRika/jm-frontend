@@ -4,6 +4,70 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useThemeColors } from "@/lib/hooks/useThemeColors";
 import { useTranslation } from "@/components/I18nProvider";
 import toast from "react-hot-toast";
+
+// Inline SVG icons that follow currentColor for theme compatibility
+function IconMinus() {
+  return (
+    <span style={{ display: 'inline-flex', width: 20, height: 20 }}>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <line x1="5" y1="12" x2="19" y2="12" />
+      </svg>
+    </span>
+  );
+}
+
+function IconArrowLeft() {
+  return (
+    <span style={{ display: 'inline-flex', width: 20, height: 20 }}>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+    </span>
+  );
+}
+
+function IconArrowRight() {
+  return (
+    <span style={{ display: 'inline-flex', width: 20, height: 20 }}>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <polyline points="9 18 15 12 9 6" />
+      </svg>
+    </span>
+  );
+}
+
+function IconPlus() {
+  return (
+    <span style={{ display: 'inline-flex', width: 20, height: 20 }}>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <line x1="12" y1="5" x2="12" y2="19" />
+        <line x1="5" y1="12" x2="19" y2="12" />
+      </svg>
+    </span>
+  );
+}
+
+function IconDownload() {
+  return (
+    <span style={{ display: 'inline-flex', width: 20, height: 20 }}>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </svg>
+    </span>
+  );
+}
+function IconClose() {
+  return (
+    <span style={{ display: 'inline-flex', width: 20, height: 20 }}>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </span>
+  );
+}
 import {
   getDeck,
   listFiles,
@@ -73,9 +137,12 @@ export default function QuestionDeckCreator() {
 
   const [showJumpDialog, setShowJumpDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [deleteStep, setDeleteStep] = useState<1 | 2>(1);
+  // 删除文件只需一次确认，无需步骤状态
   const [showNewFileDialog, setShowNewFileDialog] = useState(false);
   const [newFilename, setNewFilename] = useState("");
+  const editorRef = useRef<HTMLDivElement | null>(null);
+  const [editorHeight, setEditorHeight] = useState<number | undefined>(undefined);
+  const [isMobile, setIsMobile] = useState(false);
 
   const total = cards.length;
   const progressLabel = `${Math.min(currentIndex + 1, total)}/${total}`;
@@ -93,6 +160,7 @@ export default function QuestionDeckCreator() {
         alignItems: "center",
         justifyContent: "space-between",
         gap: "1rem",
+        flexWrap: isMobile ? "wrap" : "nowrap",
       },
       leftGroup: {
         display: "flex",
@@ -119,6 +187,23 @@ export default function QuestionDeckCreator() {
         background: colors.background,
         color: colors.textPrimary,
         cursor: "pointer",
+      },
+      iconButton: {
+        background: "transparent",
+        border: "none",
+        padding: 0,
+        color: colors.textPrimary,
+        cursor: "pointer",
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      icon: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 20,
+        height: 20,
       },
       progress: {
         padding: "0.5rem 0.75rem",
@@ -151,6 +236,7 @@ export default function QuestionDeckCreator() {
         flexDirection: "column" as const,
         gap: "0.75rem",
         minHeight: 420,
+        height: editorHeight,
       },
       areaWrap: {
         display: "flex",
@@ -161,7 +247,7 @@ export default function QuestionDeckCreator() {
       textarea: {
         flex: 1,
         width: "100%",
-        resize: "vertical" as const,
+        resize: "none" as const,
         minHeight: 160,
         padding: "0.75rem 1rem",
         borderRadius: 8,
@@ -229,7 +315,22 @@ export default function QuestionDeckCreator() {
         cursor: "not-allowed",
       },
     } as const;
-  }, [colors, total, currentIndex]);
+  }, [colors, total, currentIndex, editorHeight, isMobile]);
+
+  // 动态计算编辑区域高度，尽量铺满视口高度
+  useEffect(() => {
+    const compute = () => {
+      if (!editorRef.current) return;
+      const rect = editorRef.current.getBoundingClientRect();
+      const padding = 24; // 底部留白
+      const h = Math.max(360, Math.floor(window.innerHeight - rect.top - padding));
+      setEditorHeight(h);
+      setIsMobile(window.innerWidth <= 768);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
 
   // 初始化加载文件列表
   useEffect(() => {
@@ -304,7 +405,6 @@ export default function QuestionDeckCreator() {
 
   const handleDeleteLong = () => {
     if (!selectedFile) return;
-    setDeleteStep(1);
     setShowDeleteDialog(true);
   };
 
@@ -447,7 +547,6 @@ export default function QuestionDeckCreator() {
       <div style={styles.header}>
         {/* 左侧：文件选择 */}
         <div style={styles.leftGroup}>
-          <span style={styles.small}>{t.tools.questionDeck.labels.file}：</span>
           <select
             style={styles.select as React.CSSProperties}
             value={selectedFile}
@@ -476,7 +575,7 @@ export default function QuestionDeckCreator() {
             disabled={!selectedFile || removing || total === 0}
             {...deleteHandlers}
           >
-            ➖
+            <IconMinus />
           </button>
           <button
             title={t.tools.questionDeck.buttons.prev}
@@ -487,7 +586,7 @@ export default function QuestionDeckCreator() {
             disabled={currentIndex <= 0}
             onClick={handlePrev}
           >
-            ⬅️
+            <IconArrowLeft />
           </button>
           <div
             title={t.tools.questionDeck.dialog.quickJump}
@@ -505,14 +604,14 @@ export default function QuestionDeckCreator() {
             disabled={currentIndex >= total - 1}
             onClick={handleNext}
           >
-            ➡️
+            <IconArrowRight />
           </button>
           <button
             title={t.tools.questionDeck.buttons.addTip}
             style={styles.controlButton as React.CSSProperties}
             {...addHandlers}
           >
-            ➕
+            <IconPlus />
           </button>
           <button
             title={t.tools.questionDeck.buttons.download}
@@ -525,7 +624,7 @@ export default function QuestionDeckCreator() {
             disabled={!selectedFile || downloading}
             onClick={handleDownload}
           >
-            ⬇️
+            <IconDownload />
           </button>
         </div>
 
@@ -545,7 +644,7 @@ export default function QuestionDeckCreator() {
       </div>
 
       {/* 编辑区域：上下两个大文本框，1:1 */}
-      <div style={styles.editor}>
+      <div ref={editorRef} style={styles.editor}>
         <div style={styles.areaWrap}>
           <span style={styles.label}>{t.tools.questionDeck.labels.question}</span>
           <textarea
@@ -573,10 +672,12 @@ export default function QuestionDeckCreator() {
             <div style={styles.dialogHeader}>
               <strong>{t.tools.questionDeck.dialog.quickJump}</strong>
               <button
-                style={styles.controlButton as React.CSSProperties}
+                style={styles.iconButton as React.CSSProperties}
                 onClick={() => setShowJumpDialog(false)}
+                title={t.tools.questionDeck.buttons.close}
+                aria-label={t.tools.questionDeck.buttons.close}
               >
-                {t.tools.questionDeck.buttons.close}
+                <IconClose />
               </button>
             </div>
             <div style={{ marginBottom: "0.5rem" }}>
@@ -603,53 +704,34 @@ export default function QuestionDeckCreator() {
         </div>
       )}
 
-      {/* 删除文件二次确认对话框 */}
+      {/* 删除文件确认对话框 */}
       {showDeleteDialog && selectedFile && (
         <div style={styles.overlay} onClick={() => setShowDeleteDialog(false)}>
           <div style={styles.dialog} onClick={(e) => e.stopPropagation()}>
             <div style={styles.dialogHeader}>
               <strong>{t.tools.questionDeck.buttons.deleteTip}</strong>
             </div>
-            {deleteStep === 1 ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div>
-                  {t.tools.questionDeck.confirm.deleteDeckPrefix} “{selectedFile}” {t.tools.questionDeck.confirm.deleteDeckSuffix}
-                </div>
-                <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                  <button
-                    style={styles.controlButton as React.CSSProperties}
-                    onClick={() => setShowDeleteDialog(false)}
-                  >
-                    {t.tools.questionDeck.buttons.close}
-                  </button>
-                  <button
-                    style={styles.primaryButton as React.CSSProperties}
-                    onClick={() => setDeleteStep(2)}
-                  >
-                    {t.tools.questionDeck.buttons.next}
-                  </button>
-                </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div>
+                {t.tools.questionDeck.confirm.deleteDeckPrefix} “{selectedFile}” {t.tools.questionDeck.confirm.deleteDeckSuffix}
               </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={styles.danger as React.CSSProperties}>{t.tools.questionDeck.confirm.irreversible}</div>
-                <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                  <button
-                    style={styles.controlButton as React.CSSProperties}
-                    onClick={() => setShowDeleteDialog(false)}
-                  >
-                    {t.tools.questionDeck.buttons.close}
-                  </button>
-                  <button
-                    style={styles.primaryButton as React.CSSProperties}
-                    onClick={confirmDelete}
-                    disabled={removing}
-                  >
-                    {removing ? t.tools.questionDeck.buttons.confirming : t.tools.questionDeck.buttons.confirm}
-                  </button>
-                </div>
+              <div style={styles.danger as React.CSSProperties}>{t.tools.questionDeck.confirm.irreversible}</div>
+              <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
+                <button
+                  style={styles.controlButton as React.CSSProperties}
+                  onClick={() => setShowDeleteDialog(false)}
+                >
+                  {t.tools.questionDeck.buttons.close}
+                </button>
+                <button
+                  style={styles.primaryButton as React.CSSProperties}
+                  onClick={confirmDelete}
+                  disabled={removing}
+                >
+                  {removing ? t.tools.questionDeck.buttons.confirming : t.tools.questionDeck.buttons.confirm}
+                </button>
               </div>
-            )}
+            </div>
           </div>
         </div>
       )}
