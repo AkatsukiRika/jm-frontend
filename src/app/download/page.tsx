@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -20,7 +20,7 @@ const menuItems: MenuItem[] = [
   { id: 'openps', label: 'OpenPS', file: 'download_page_3.md' },
 ];
 
-export default function Download() {
+function DownloadInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [content, setContent] = useState('');
@@ -109,5 +109,13 @@ export default function Download() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function Download() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DownloadInner />
+    </Suspense>
   );
 }
