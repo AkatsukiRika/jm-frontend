@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { Suspense, useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -34,7 +34,7 @@ function removeMarkdownExtension(filename: string): string {
   return filename.replace(/\.md$/, '');
 }
 
-export default function Documents() {
+function DocumentsInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const documentId = searchParams.get('id');
@@ -258,5 +258,13 @@ export default function Documents() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Documents() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DocumentsInner />
+    </Suspense>
   );
 }
