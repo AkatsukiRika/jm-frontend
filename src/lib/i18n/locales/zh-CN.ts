@@ -40,6 +40,66 @@ export const zhCN: Translations = {
     },
   },
   tools: {
+    questionDeck: {
+      title: '题组创建器',
+      labels: {
+        file: '文件',
+        noFile: '无文件',
+        question: '问题',
+        answer: '答案',
+      },
+      buttons: {
+        deleteTip: '删除题组文件确认',
+        prev: '上一题',
+        next: '下一题',
+        addTip: '新建题组文件',
+        download: '下载当前题组 JSON',
+        save: '保存',
+        saving: '保存中...',
+        confirm: '确认',
+        confirming: '确认中...',
+        close: '关闭',
+      },
+      placeholders: {
+        question: '在这里输入问题...',
+        answer: '在这里输入答案...',
+      },
+      progress: {
+        loading: '加载中...'
+      },
+      dialog: {
+        quickJump: '快速跳转',
+        hintPrefix: '当前共有',
+        hintSuffix: '道题，点击序号跳转',
+      },
+      confirm: {
+        deleteDeckPrefix: '确认删除整个题组文件',
+        deleteDeckSuffix: '吗？',
+        irreversible: '此操作不可恢复，是否继续？',
+      },
+      prompts: {
+        newFilename: '输入新题组文件名（例如：my_deck.json）',
+      },
+      toasts: {
+        saveSuccess: '保存成功',
+      },
+      errors: {
+        listFailed: '获取文件列表失败',
+        listException: '获取文件列表异常',
+        getFailed: '获取题组失败',
+        getException: '获取题组异常',
+        deleteFailed: '删除失败',
+        deleteException: '删除异常',
+        createFailed: '创建题组失败',
+        createException: '创建题组异常',
+        needSelect: '请先选择或创建题组文件',
+        saveFailed: '保存失败',
+        saveException: '保存异常',
+        needSelectToDownload: '请先选择题组文件',
+        downloadFailed: '下载失败',
+        downloadException: '下载异常',
+      },
+    },
     lottie: {
       title: 'Lottie 预览器',
       empty: '尚未加载动画',

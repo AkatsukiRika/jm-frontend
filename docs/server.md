@@ -51,9 +51,15 @@ data 返回格式：
 
 ### 获取内容
 
-接口: `/api/getContentByName`
+接口: `/api/getContentByName/${fileName}`
 
 方法: `GET`
+
+URL 参数：
+
+| 参数名 | 类型 | 说明 |
+| - | - | - |
+| fileName | string | 题组 JSON 文件名 |
 
 query 参数：
 

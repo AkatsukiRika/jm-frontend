@@ -40,6 +40,66 @@ export const zhTW: Translations = {
     },
   },
   tools: {
+    questionDeck: {
+      title: '題組建立器',
+      labels: {
+        file: '檔案',
+        noFile: '無檔案',
+        question: '問題',
+        answer: '答案',
+      },
+      buttons: {
+        deleteTip: '刪除題組文件確認',
+        prev: '上一題',
+        next: '下一題',
+        addTip: '新建題組文件',
+        download: '下載當前題組 JSON',
+        save: '儲存',
+        saving: '儲存中...',
+        confirm: '確認',
+        confirming: '確認中...',
+        close: '關閉',
+      },
+      placeholders: {
+        question: '在這裡輸入問題...',
+        answer: '在這裡輸入答案...',
+      },
+      progress: {
+        loading: '載入中...'
+      },
+      dialog: {
+        quickJump: '快速跳轉',
+        hintPrefix: '當前共有',
+        hintSuffix: '題，點擊序號跳轉',
+      },
+      confirm: {
+        deleteDeckPrefix: '確認刪除整個題組檔案',
+        deleteDeckSuffix: '嗎？',
+        irreversible: '此操作不可回復，是否繼續？',
+      },
+      prompts: {
+        newFilename: '輸入新題組檔名（例如：my_deck.json）',
+      },
+      toasts: {
+        saveSuccess: '儲存成功',
+      },
+      errors: {
+        listFailed: '獲取檔案列表失敗',
+        listException: '獲取檔案列表異常',
+        getFailed: '獲取題組失敗',
+        getException: '獲取題組異常',
+        deleteFailed: '刪除失敗',
+        deleteException: '刪除異常',
+        createFailed: '建立題組失敗',
+        createException: '建立題組異常',
+        needSelect: '請先選擇或建立題組檔案',
+        saveFailed: '儲存失敗',
+        saveException: '儲存異常',
+        needSelectToDownload: '請先選擇題組檔案',
+        downloadFailed: '下載失敗',
+        downloadException: '下載異常',
+      },
+    },
     lottie: {
       title: 'Lottie 預覽器',
       empty: '尚未載入動畫',

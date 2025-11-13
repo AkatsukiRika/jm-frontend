@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import styles from './page.module.css';
+import { Toaster } from 'react-hot-toast';
 
 // 导入工具组件
 import QuestionDeckCreator from '@/components/tools/QuestionDeckCreator';
@@ -24,7 +25,7 @@ export default function Tools() {
   const { t } = useTranslation();
 
   const toolItems: ToolItem[] = useMemo(() => [
-    { id: 'question-deck', label: 'Question Deck Creator', component: QuestionDeckCreator },
+    { id: 'question-deck', label: t.tools.questionDeck.title, component: QuestionDeckCreator },
     { id: 'bmi-calculator', label: t.tools.bmi.title, component: BMICalculator },
     { id: 'lottie-previewer', label: t.tools.lottie.title, component: LottiePreviewer },
     { id: 'unix-timestamp', label: t.tools.unix.title, component: UnixTimestamp },
@@ -54,6 +55,16 @@ export default function Tools() {
 
   return (
     <div className={styles.container}>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          duration: 3000,
+          style: { background: '#363636', color: '#fff' },
+          success: { duration: 2000, iconTheme: { primary: '#10b981', secondary: '#fff' } },
+          error: { duration: 3000, iconTheme: { primary: '#ef4444', secondary: '#fff' } },
+        }}
+      />
       {/* PC端侧边栏 */}
       <aside className={styles.sidebar}>
         <nav className={styles.menu}>

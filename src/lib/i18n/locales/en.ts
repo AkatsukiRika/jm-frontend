@@ -38,6 +38,66 @@ export const en = {
     },
   },
   tools: {
+    questionDeck: {
+      title: 'Question Deck Creator',
+      labels: {
+        file: 'File',
+        noFile: 'No files',
+        question: 'Question',
+        answer: 'Answer',
+      },
+      buttons: {
+        deleteTip: 'Delete File Confirmation',
+        prev: 'Previous',
+        next: 'Next',
+        addTip: 'New Deck File',
+        download: 'Download current deck JSON',
+        save: 'Save',
+        saving: 'Saving...',
+        confirm: 'Confirm',
+        confirming: 'Confirming...',
+        close: 'Close',
+      },
+      placeholders: {
+        question: 'Type your question here...',
+        answer: 'Type your answer here...',
+      },
+      progress: {
+        loading: 'Loading...'
+      },
+      dialog: {
+        quickJump: 'Quick Jump',
+        hintPrefix: 'Total',
+        hintSuffix: 'cards, click to jump',
+      },
+      confirm: {
+        deleteDeckPrefix: 'Delete the whole deck',
+        deleteDeckSuffix: '?',
+        irreversible: 'This action cannot be undone. Continue?',
+      },
+      prompts: {
+        newFilename: 'Enter new deck filename (e.g., my_deck.json)',
+      },
+      toasts: {
+        saveSuccess: 'Saved successfully',
+      },
+      errors: {
+        listFailed: 'Failed to get file list',
+        listException: 'Exception while fetching file list',
+        getFailed: 'Failed to get deck',
+        getException: 'Exception while fetching deck',
+        deleteFailed: 'Delete failed',
+        deleteException: 'Exception while deleting',
+        createFailed: 'Create deck failed',
+        createException: 'Exception while creating deck',
+        needSelect: 'Please select or create a deck file first',
+        saveFailed: 'Save failed',
+        saveException: 'Exception while saving',
+        needSelectToDownload: 'Please select a deck file first',
+        downloadFailed: 'Download failed',
+        downloadException: 'Exception while downloading',
+      },
+    },
     lottie: {
       title: 'Lottie Previewer',
       empty: 'No animation loaded',

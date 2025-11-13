@@ -1,6 +1,6 @@
 import type { ApiResponse } from '../types/api';
 
-const BASE_URL = 'https://www.tang-ping.top';
+export const BASE_URL = 'https://www.tang-ping.top';
 
 /**
  * 通用的 API 请求函数
