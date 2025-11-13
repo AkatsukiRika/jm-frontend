@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <article className="markdown">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
           {markdownContent}
         </ReactMarkdown>
       </article>

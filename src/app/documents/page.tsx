@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 import styles from './page.module.css';
 
 interface DocumentItem {
@@ -186,7 +187,7 @@ export default function Documents() {
 
           <div className={styles.markdownWrapper}>
             <article className="markdown">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
                 {documentContent}
               </ReactMarkdown>
             </article>
