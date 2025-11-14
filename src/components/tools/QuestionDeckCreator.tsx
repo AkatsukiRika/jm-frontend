@@ -80,7 +80,7 @@ import type {
   QuestionDeckContent,
 } from "@/lib/types/questionDeck";
 
-// 简单的长按 Hook：按住 delay 毫秒触发长按，否则短按
+// 长按 Hook（Pointer 事件版）：统一处理鼠标/触摸，避免移动端触发两次
 function useLongPress(
   onLongPress: () => void,
   onClick: () => void,
@@ -104,20 +104,15 @@ function useLongPress(
     }
   };
 
-  const onMouseDown = () => start();
-  const onMouseUp = () => {
+  const onPointerDown = () => start();
+  const onPointerUp = () => {
     if (!longPressedRef.current) onClick();
     clear();
   };
-  const onMouseLeave = () => clear();
+  const onPointerLeave = () => clear();
+  const onPointerCancel = () => clear();
 
-  const onTouchStart = () => start();
-  const onTouchEnd = () => {
-    if (!longPressedRef.current) onClick();
-    clear();
-  };
-
-  return { onMouseDown, onMouseUp, onMouseLeave, onTouchStart, onTouchEnd };
+  return { onPointerDown, onPointerUp, onPointerLeave, onPointerCancel };
 }
 
 export default function QuestionDeckCreator() {
