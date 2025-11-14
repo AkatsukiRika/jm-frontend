@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { Suspense, useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import { Toaster } from 'react-hot-toast';
@@ -18,7 +18,7 @@ interface ToolItem {
   component: React.ComponentType;
 }
 
-export default function Tools() {
+function ToolsInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showList, setShowList] = useState(true);
@@ -108,5 +108,13 @@ export default function Tools() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function Tools() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ToolsInner />
+    </Suspense>
   );
 }
