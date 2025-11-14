@@ -132,6 +132,7 @@
 .documentList {
   display: grid;
   gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 /* 文档卡片 */
@@ -142,6 +143,11 @@
   box-shadow: 0 1px 3px var(--card-shadow);
   transition: all 0.2s;
   cursor: pointer;
+  /* 防止移动端长字符串撑破容器导致右侧无边距 */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  /* 若仍有极长无空格字符串，尽可能在任意位置断行 */
+  overflow-wrap: anywhere;
 }
 
 .documentCard:hover {
@@ -165,6 +171,9 @@
   margin: 0;
   flex: 1;
   line-height: 1.5;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .documentDate {
