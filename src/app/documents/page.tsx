@@ -56,7 +56,8 @@ function DocumentsInner() {
         const documentsWithPreview = await Promise.all(
           manifest.file_list.map(async (doc) => {
             try {
-              const docRes = await fetch(`/assets/markdown/documents/${doc.file_name}`);
+              const filePath = `/assets/markdown/documents/${encodeURIComponent(doc.file_name)}`;
+              const docRes = await fetch(filePath);
               const content = await docRes.text();
               // 获取前5行非空内容作为预览
               const lines = content.split('\n')
@@ -95,7 +96,8 @@ function DocumentsInner() {
       setLoading(true);
 
       try {
-        const docRes = await fetch(`/assets/markdown/documents/${doc.file_name}`);
+        const filePath = `/assets/markdown/documents/${encodeURIComponent(doc.file_name)}`;
+        const docRes = await fetch(filePath);
         const content = await docRes.text();
         setDocumentContent(content);
       } catch (error) {
