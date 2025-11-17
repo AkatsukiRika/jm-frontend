@@ -10,9 +10,6 @@
 
 **近期项目源码仓库**：  
 
-<https://github.com/AkatsukiRika/tp_frontend>  
-躺平网：Flutter Web 项目（本网站），个人网站类项目，用于承载一些 Markdown 格式的文档和静态文件资源的下载，并配有小工具页面，后端使用 Flask + MongoDB 简单实现。
-
 <https://github.com/AkatsukiRika/KotStore>  
 KotStore: Android 库，使用 Kotlin 开发，将 Preferences DataStore 的持久化基本操作封装成 delegate 形式并对基于 Flow 的使用提供资源，已用在个人的其他项目中。
 
@@ -23,4 +20,4 @@ KotStore: Android 库，使用 Kotlin 开发，将 Preferences DataStore 的持�
 Open Photo Studio: Android 平台的修图项目，支持美颜、调节、滤镜、构图及 AI 消除功能，渲染引擎基于 gpupixel 开源库开发，目前已停止维护。
 
 ## 关于本站
-使用 Flutter 开发，SPA 架构，运行在 Linux 云主机上。主机位于日本关东，从中国大陆境内访问稍慢，可能需要使用科学上网。
+使用 Claude Code、Codex 和 Gemini CLI 基于 Next.js 重构了之前的 Flutter Web 版本，并部署在 Vercel 上。
