@@ -104,6 +104,8 @@
 
 ## Downloads
 
+[v1.5.1 APK](https://github.com/AkatsukiRika/ZhouTools/releases/download/v1.5.1/ZhouTools-v1.5.1.apk)
+
 [v1.5.0 APK](https://github.com/AkatsukiRika/ZhouTools/releases/download/v1.5.0/ZhouTools-v1.5.0.apk)
 
 [v1.4.0 APK](https://github.com/AkatsukiRika/ZhouTools/releases/download/v1.4.0/ZhouTools-v1.4.0.apk)
