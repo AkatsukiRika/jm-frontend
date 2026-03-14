@@ -22,7 +22,7 @@ MCP 官方提供了 TypeScript、Python 等多种语言的 SDK，这其中也包
 
 首先，创建一个 Kotlin 项目，Build System 选择 Gradle，JDK 版本这里我选择的是 17，Gradle DSL 选择的是 Groovy 语言（当然，也可以选择更现代化的 Kotlin DSL）：
 
-![](https://oyw344o0ub.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGI1OGM0NDEzNTRlOGIxYTM4OGQzNjRhYmFhMWVmYjlfazF4RzhlMHRsTEpOdnNWTVFiZ0xuTlh2TTh5VjZ1aDJfVG9rZW46UmxhbGJoSk5Ub25PYnd4Q3lZaGNMS0Y1bldiXzE3NTQ4OTk1NTg6MTc1NDkwMzE1OF9WNA)
+![](/assets/images/documents/img_mcp_1.png)
 
 创建好项目之后，在 build.gradle 里先添加好 SDK 的依赖并加上 application 块，方便后续打二进制包供 MCP 客户端使用：
 
@@ -114,21 +114,21 @@ runBlocking {
 
 用 IDE 运行一下编写好的程序，确认能看到 `MCP Server running...` 这行输出，就可以开始用 MCP Inspector 测试了。首先运行 `./gradlew installDist`，将编译产物和运行依赖打包到一个本地的可运行目录结构中（在这里对应 `build/install/项目名`）：
 
-![](https://oyw344o0ub.feishu.cn/space/api/box/stream/download/asynccode/?code=YjI4OGUyZDc2ODQzMTczYzAzNGUwNzMwMzY3MDAxYWJfSW90OUtBREVpZzZuQkROem9nbWhaQVNscmhSamg2UFRfVG9rZW46RlB0S2JzbEUyb01odzN4MkhrbmNtVVNQblJlXzE3NTQ4OTk1NTg6MTc1NDkwMzE1OF9WNA)
+![](/assets/images/documents/img_mcp_2.png)
 
 然后复制 bin 下可执行文件的绝对路径，在终端中运行命令 `mcp-inspector <可执行文件的绝对路径>`，浏览器会自动打开：
 
-![](https://oyw344o0ub.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDQxNTc2ZTc1MjY3M2Q5ZWUyZjE0YWEyODc3NGQxNzBfeGhJMTU3cWI5T1NobXRYVEJQQVhJWk5pRlJIR0Q1Nk1fVG9rZW46TDdvNGJRT1lZb3BLSnR4VFIzemMwSHFrbjdmXzE3NTQ4OTk1NTg6MTc1NDkwMzE1OF9WNA)
+![](/assets/images/documents/img_mcp_3.png)
 
 点击 Connect 按钮，服务器会自动连接上，然后就可以在 Tools 窗口中测试之前写好的 hello 工具了：
 
-![](https://oyw344o0ub.feishu.cn/space/api/box/stream/download/asynccode/?code=MmRkNzFhYjhhMmJiOGQzODM4NjU2NjlhNjhhZDY2NDRfekxCTzhHa2V5UVpJN01nc3JOQUx2Z1Bzc25XOGYwdDlfVG9rZW46SDQwemJ0UHFzb0lkQlV4SmQwR2NnS0J6bjFhXzE3NTQ4OTk1NTg6MTc1NDkwMzE1OF9WNA)
+![](/assets/images/documents/img_mcp_4.png)
 
 # 连接 Cursor
 
 打开 Cursor，进入 Preferences > Cursor Settings > Tools & Integrations，点击 Add Custom MCP 按钮：
 
-![](https://oyw344o0ub.feishu.cn/space/api/box/stream/download/asynccode/?code=Zjc5NDJlZjJmNDI5MDExOTNhNGRiYzU5YWJlY2M2NWZfVnZnSm5jaUxyUVdlMWpBZ2l0UkxXaHBMeXJqb0xaOFhfVG9rZW46VlNUZGJ2Q2Myb0JpMDR4QmlIcWN2UWMybkJjXzE3NTQ4OTk1NTg6MTc1NDkwMzE1OF9WNA)
+![](/assets/images/documents/img_mcp_5.png)
 
 用以下内容替换 mcp.json 文件的内容（command 处要填写上面获取到的绝对路径），然后回到 Cursor Settings 页面：
 
@@ -146,11 +146,11 @@ runBlocking {
 
 能看到我们编写的 hello 工具已经在 Cursor 可用 MCP 工具的列表中了：
 
-![](https://oyw344o0ub.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjUzNjg5N2VjZDBjYTM3NTQxMjlkNDBiNjZkZGJjOWFfM3BLdm1WNnhmeVRScWc3ZUkydWhUeGJtY3Q0Q0ZGT1RfVG9rZW46RDZnZ2JVd3ozb3FERWJ4SGszTGNMNlpBbnFmXzE3NTQ4OTk1NTg6MTc1NDkwMzE1OF9WNA)
+![](/assets/images/documents/img_mcp_6.png)
 
 接下来打开 Agent 模式，让 LLM 调用我们的工具，分别对三名用户问好：
 
-![](https://oyw344o0ub.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2ZmZGY0ZDZmMzA5MzYyNjNlZTZiMGVmN2M3MzI4MjlfWllZekE4T2I4NEVwOHNaUWxwWjhFUDdMMXU2NUt6MjNfVG9rZW46T2FEcGJFMFZHbzN1RWx4VXVvTWNFeVVKbmpjXzE3NTQ4OTk1NTg6MTc1NDkwMzE1OF9WNA)
+![](/assets/images/documents/img_mcp_7.png)
 
 可以看到大模型已经能够调用我们封装好的能力了。
 
