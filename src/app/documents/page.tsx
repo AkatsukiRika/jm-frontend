@@ -72,8 +72,11 @@ function DocumentsInner() {
           })
         );
 
-        // 保持JSON中的原始顺序
-        setDocuments(documentsWithPreview);
+        // 按照创建时间倒序排序
+        const documentsSortedByCreateTime = [...documentsWithPreview].sort(
+          (a, b) => b.create_time - a.create_time
+        );
+        setDocuments(documentsSortedByCreateTime);
       } catch (error) {
         console.error('Failed to load documents:', error);
       } finally {
